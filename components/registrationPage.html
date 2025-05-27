@@ -11,26 +11,10 @@
   <style>
     body {
       background: linear-gradient(135deg,#ede800, #aed9e0, #7500f7);
-      /* background-size: 800% 800%;
-      animation: gradientFlow 13s ease infinite; */
       color: black;
       width: 100vw;
       height: 100vh;
     }
-
-    /* @keyframes gradientFlow {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
-    } */
 
     .form {
       width: 40%;
@@ -168,7 +152,7 @@
           <div id="passwordError"></div>
         </div>
         <button id="btn" class="btn">Sign Up</button>
-        <a class="loginPage" href="./login.html">Already have an account</a>
+        <a class="loginPage" href="../index.html">Already have an account</a>
       </div>
 
   </div>
@@ -293,10 +277,6 @@
           return;
         }
 
-
-        // console.log(base64Data)
-        // let profile = document.getElementById("profile").files;
-        // console.log(document.getElementById("profile").files)
         let count = existingData.length;
         const userData = {
           id: count + 1,
@@ -308,14 +288,13 @@
           gender: gender.value,
           dob: `${day.value}-${months.value}-${year}`,
         };
-        // console.log(userData.profileImg)
         existingData.push(userData);
         localStorage.setItem("userDetails", JSON.stringify(existingData));
         alert("User registered successfully!")
         document.querySelector("form").reset();
 
         setTimeout(() => {
-          window.location.href = "./login.html";
+          window.location.href = "../components/index.html";
         }, 2000);
       }
     });

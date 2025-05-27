@@ -115,23 +115,23 @@ async function highlightButton(page) {
 
   let mainContainer = document.getElementById("mainContainer");
   if (page === "friends") {
-    nodePoint = await getPage("./components/friends.html", mainContainer);
+    nodePoint = await getPage("./friends.html", mainContainer);
     currentPageDisplayed = "friends";
     highlightSelection(1);
   } else if (page == "game") {
-    nodePoint = await getPage("./components/game.html", mainContainer);
+    nodePoint = await getPage("./game.html", mainContainer);
     highlightSelection(4);
     currentPageDisplayed = "game";
   } else if (page == "video") {
-    nodePoint = await getPage("./components/video.html", mainContainer);
+    nodePoint = await getPage("./video.html", mainContainer);
     highlightSelection(2);
     currentPageDisplayed = "video";
   } else if (page == "stores") {
-    nodePoint = await getPage("./components/marketPlace.html", mainContainer);
+    nodePoint = await getPage("./marketPlace.html", mainContainer);
     currentPageDisplayed = "stores";
     highlightSelection(3);
   } else {
-    window.location.href = "index.html";
+    window.location.href = "./home.html";
     currentPageDisplayed = "home";
     highlightSelection(0);
   }
@@ -976,7 +976,7 @@ function logOutUser() {
   document.querySelector(".loginPage").style.display = "block";
   document.querySelector(".model").style.display = "block";
   setTimeout(() => {
-    window.open("../components/login.html");
+    window.open("../index.html");
   }, 1000);
 }
 
