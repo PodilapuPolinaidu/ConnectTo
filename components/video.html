@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video</title>
+  <style>
+    body {
+      color: white;
+      background-color: #0353a4;
+    }
+
+    .sectionContainer1 {
+      width: 100%;
+      height: max-content;
+      background-color: #0353a4;
+    }
+
+    .leftSideContainer {
+      width: 23%;
+      display: flex;
+      flex-direction: column;
+      background-color: #061a40;
+    }
+
+    .centerContainer {
+      width: 75%;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 10px;
+      top: 30px;
+    }
+
+    .icon {
+      font-size: 1.3em;
+    }
+
+    .textMsg {
+      margin-top: 4px;
+      font-size: 1.3em;
+      align-self: start;
+    }
+
+    .iconContainer {
+      display: flex;
+      padding-right: 3px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .items {
+      opacity: 0;
+      transform: scale(0.8);
+      animation: scaleFadeIn 0.5s ease-out forwards, liftGlow 0.6s ease-in-out forwards;
+    }
+
+    .items:nth-child(1) {
+      animation-delay: 0.5s;
+    }
+
+    .items:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .items:nth-child(3) {
+      animation-delay: 0.7s;
+    }
+
+    .items:nth-child(4) {
+      animation-delay: 0.8s;
+    }
+
+    .items:nth-child(5) {
+      animation-delay: 0.9s;
+    }
+
+    .items:nth-child(6) {
+      animation-delay: 1s;
+    }
+
+    .items:nth-child(7) {
+      animation-delay: 1s;
+    }
+
+    @keyframes scaleFadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes liftGlow {
+      0% {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+
+      50% {
+        transform: translateY(-5px);
+        box-shadow: 0 0 10px rgba(0, 150, 255, 0.3);
+      }
+
+      100% {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+    }
+
+
+    .iconContainer:hover {
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .paddContainer {
+      display: flex;
+      gap: 10px;
+      padding-right: 2px;
+    }
+
+    .containerBlock {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 100%;
+      right: 0;
+      padding: 0px 0px 30px 0px;
+    }
+
+    .videoContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .friend {
+      /* width: 70%; */
+      display: flex;
+      background-color: #b8bdb5;
+      color: black;
+      padding: 5px;
+      flex-direction: column;
+      border-radius: 10px;
+      opacity: 0;
+      transform: scale(0.8) rotateZ(-5deg);
+      animation: scaleRotateFadeIn 1s ease-out forwards;
+      animation-delay: calc(var(--i) * 80ms);
+      transform-origin: center;
+    }
+
+    @keyframes scaleRotateFadeIn {
+      0% {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+
+    .mutualFriends {
+      margin-top: -8px;
+    }
+
+    .userProfile {
+      width: 100%;
+
+      height: 200px;
+      border-radius: 13px 13px 0px 0px;
+    }
+
+    @media screen and (max-width:1024px) {
+      .leftSideContainer {
+        width: 30%;
+      }
+
+      .centerContainer {
+        width: 68%;
+      }
+    }
+
+
+    @media screen and (max-width:730px) {
+      .leftSideContainer {
+        width: 40%;
+      }
+
+      .centerContainer {
+        width: 60%;
+        right: -20px;
+        top: 20px;
+      }
+      
+    }
+
+    @media screen and (max-width:420px) {
+      .leftSideContainer {
+        width: 40%;
+      }
+
+      .centerContainer {
+        width: 60%;
+        right: -220px;
+        top: 20px;
+      }
+
+      .post {
+        width: 96%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="sectionContainer1">
+    <aside class="leftSideContainer">
+      <div class="d-flex flex-column gap-1">
+        <div class="iconContainer items">
+          <h2>Video</h2>
+          <i class="fa-solid fa-gear icon"></i>
+        </div>
+
+        <div class="iconContainer items position-relative w-100">
+          <i class="fa-solid fa-magnifying-glass position-absolute s-25 text-black ms-1"></i>
+          <input type="text" placeholder="Search videos" class="w-100 rounded-3 border-0 ps-4 p-1">
+        </div>
+
+        <div class="paddContainer items">
+          <i class="fa-solid fa-user-group icon"></i>
+          <p class="textMsg">Home</p>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-user-check icon"></i>
+            <p class="textMsg">Live</p>
+          </div>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-user-plus icon"></i>
+            <p class="textMsg">Reels</p>
+          </div>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-people-group icon"></i>
+            <p class="textMsg">Explore</p>
+          </div>
+        </div>
+
+        <div class="paddContainer items">
+          <i class="fa-solid fa-gift icon"></i>
+          <p class="textMsg">Saved Videos</p>
+        </div>
+      </div>
+    </aside>
+    <main class="centerContainer">
+      <div class="containerBlock">
+        <div id="videoContainer" class="videoContainer"></div>
+      </div>
+    </main>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"></script>
+
+  <script>
+    const facebookVideos = [
+      {
+        id: 1,
+        title: "4K Nature Relaxation Video",
+        description: "Stunning landscapes in ultra HD Stunning landscapes in ultra HD Stunning landscapes in ultra HD Stunning landscapes in ultra HD",
+        thumbnail: "https://images.unsplash.com/photo-1506744038136-46273834b3fb",
+        videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+        duration: "3:22",
+        views: "5.7M",
+        timestamp: "2 days ago",
+        author: {
+          name: "Nature HD",
+          avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde"
+        },
+        likes: "124K",
+        comments: "8.2K",
+        shares: "15.3K"
+      },
+      {
+        id: 2,
+        title: "City Time-Lapse in 4K",
+        description: "Sunset over New York City Sunset over New York City Sunset over New York City Sunset over New York City Sunset over New York City",
+        thumbnail: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9",
+        videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+        duration: "1:45",
+        views: "3.1M",
+        timestamp: "1 week ago",
+        author: {
+          name: "Urban Cinematics",
+          avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a"
+        },
+        likes: "89K",
+        comments: "4.5K",
+        shares: "9.8K"
+      },
+      {
+        id: 3,
+        title: "Underwater 4K Marine Life",
+        description: "Coral reefs and tropical fish in HD Coral reefs and tropical fish in HD Coral reefs and tropical fish in HD Coral reefs and tropical fish in HD",
+        thumbnail: "https://images.unsplash.com/photo-1439405326854-014607f694d7",
+        videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+        duration: "5:10",
+        views: "2.4M",
+        timestamp: "3 days ago",
+        author: {
+          name: "Ocean Wonders",
+          avatar: "https://images.unsplash.com/photo-1531384441138-2736e62e0919"
+        },
+        likes: "76K",
+        comments: "3.9K",
+        shares: "7.1K"
+      },
+      {
+        id: 4,
+        title: "Mountain Adventure in 4K",
+        description: "Hiking the Swiss Alps Hiking the Swiss Alps Hiking the Swiss Alps Hiking the Swiss Alps Hiking the Swiss Alps Hiking the Swiss Alps",
+        thumbnail: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b",
+        videoUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+        duration: "7:33",
+        views: "4.2M",
+        timestamp: "5 days ago",
+        author: {
+          name: "Adventure Seekers",
+          avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
+        },
+        likes: "112K",
+        comments: "6.7K",
+        shares: "12.5K"
+      },
+      {
+        id: 5,
+        title: "Drone Footage: Iceland in 4K",
+        description: "Aerial views of glaciers and waterfalls Aerial views of glaciers and waterfalls Aerial views of glaciers and waterfalls Aerial views of glaciers and waterfalls",
+        thumbnail: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b",
+        videoUrl: "https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4",
+        duration: "4:18",
+        views: "6.8M",
+        timestamp: "1 day ago",
+        author: {
+          name: "Drone Explorers",
+          avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+        },
+        likes: "156K",
+        comments: "9.3K",
+        shares: "18.7K"
+      }
+    ];
+
+    function renderVideoContent(data) {
+      console.log("called");
+      document.getElementById("videoContainer").innerHTML = "";
+
+      data.map((post) => {
+        document.getElementById("videoContainer").innerHTML += `
+          <div id='post${post.id}' class="post">
+            <div class="d-flex w-100 gap-2 p-2">
+            <div class="rounded-circle d-flex">
+              <img src="${post.author.avatar
+          }" class="img" height="50px" width="50px" alt="">
+            </div>
+            <div class="d-flex justify-content-between w-100">
+              <div class="d-flex flex-column">
+                <p>${post.author.name}</p>
+                <p class="time">${post.timestamp}</p>
+              </div>
+            </div>
+          </div>
+          <div class='messege' id="textMessage${post.id}">
+            <p class='textMessage'>${post.description.length > 50
+            ? post.description.slice(0, 50)
+            : post.description
+          }
+            <span onclick="showFullMessage('${post.description}', ${post.id
+          })"> ...More </span>
+            </p>
+          </div>
+          <div class='d-flex flex-column align-items-center'>
+            <video width="100%" height="500px" controls>
+              <source src="${post.videoUrl}" type="video/mp4">
+            </video>
+            <div class='w-100 p-2'>
+              <i class="fa-solid fa-face-grin-hearts text-warning"></i>
+              <i class="fa-solid fa-thumbs-up text-primary"></i>
+              <span id='likeCount${post.id}'>${post.likes}</span>
+            </div>
+            <div class="d-flex w-100 justify-content-around p-3">
+              <div class='highlight' onclick='likeBtn(${post.id})'>
+                <i id='likeIcon${post.id
+          }' class="fa-solid fa-thumbs-up"></i> Like
+              </div>
+              <div class='highlight'>
+                <i class="fa-solid fa-comment"></i> Comment
+              </div>
+              <div class='highlight'>
+                <i class="fa-solid fa-share"></i> Share
+              </div>
+            </div>
+          </div>
+        </div>
+          `
+      })
+    }
+
+    renderVideoContent(facebookVideos);
+    function showFullMessage(message, id) {
+      document.getElementById(
+        `textMessage${id}`
+      ).innerHTML = `<p class='textMessage'>${message}</p>`;
+    }
+
+  </script>
+</body>
+
+</html>

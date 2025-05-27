@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friends</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <style>
+    body {
+      color: white;
+      background-color: #0353a4;
+    }
+
+    .sectionContainer1 {
+      width: 100%;
+      height: max-content;
+      background-color: #0353a4;
+    }
+
+    .leftSideContainer {
+      width: 23%;
+      display: flex;
+      flex-direction: column;
+      background-color: #061a40;
+    }
+
+    .centerContainer {
+      width: 75%;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 10px;
+      top: 30px;
+    }
+
+    .icon {
+      font-size: 1.3em;
+    }
+
+    .textMsg {
+      margin-top: 4px;
+      font-size: 1.3em;
+      align-self: start;
+    }
+
+    .iconContainer {
+      display: flex;
+      padding-right: 3px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .items {
+      opacity: 0;
+      transform: scale(0.8);
+      animation: scaleFadeIn 0.5s ease-out forwards, liftGlow 0.6s ease-in-out forwards;
+    }
+
+    .items:nth-child(1) {
+      animation-delay: 0.5s;
+    }
+
+    .items:nth-child(2) {
+      animation-delay: 0.6s;
+    }
+
+    .items:nth-child(3) {
+      animation-delay: 0.7s;
+    }
+
+    .items:nth-child(4) {
+      animation-delay: 0.8s;
+    }
+
+    .items:nth-child(5) {
+      animation-delay: 0.9s;
+    }
+
+    .items:nth-child(6) {
+      animation-delay: 1s;
+    }
+
+    .items:nth-child(7) {
+      animation-delay: 1s;
+    }
+
+    @keyframes scaleFadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes liftGlow {
+      0% {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+
+      50% {
+        transform: translateY(-5px);
+        box-shadow: 0 0 10px rgba(0, 150, 255, 0.3);
+      }
+
+      100% {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+    }
+
+
+    .iconContainer:hover {
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .paddContainer {
+      display: flex;
+      gap: 10px;
+      padding-right: 2px;
+    }
+
+
+    .containerBlock {
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 100%;
+      right: 0;
+      padding: 0px 0px 30px 0px;
+    }
+
+    .seeMoreBtn {
+      width: 100px;
+      border: none;
+      border-radius: 10px;
+      color: black;
+      background-color: chartreuse;
+      justify-self: center;
+      align-self: center;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    .friendsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .friend {
+      width: 18.5%;
+      display: flex;
+      background-color: #b8bdb5;
+      color: black;
+      padding: 5px;
+      flex-direction: column;
+      border-radius: 10px;
+      opacity: 0;
+      transform: scale(0.8) rotateZ(-5deg);
+      animation: scaleRotateFadeIn 1s ease-out forwards;
+      animation-delay: calc(var(--i) * 80ms);
+      transform-origin: center;
+    }
+
+    @keyframes scaleRotateFadeIn {
+      0% {
+        transform: scale(0.6);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .mutualFriends {
+      margin-top: -8px;
+    }
+
+    .userProfile {
+      width: 100%;
+
+      height: 200px;
+      border-radius: 13px 13px 0px 0px;
+    }
+
+    @media screen and (max-width:1024px) {
+      .leftSideContainer {
+        width: 30%;
+      }
+
+      .centerContainer {
+        width: 68%;
+      }
+
+      .friend {
+        width: 32%;
+      }
+    }
+
+
+    @media screen and (max-width:730px) {
+      .leftSideContainer {
+        width: 40%;
+      }
+
+      .centerContainer {
+        width: 60%;
+        right: -20px;
+        top: 20px;
+      }
+
+      .friend {
+        width: 48%;
+      }
+    }
+
+    @media screen and (max-width:420px) {
+      .leftSideContainer {
+        width: 40%;
+      }
+
+      .centerContainer {
+        width: 60%;
+        right: -220px;
+        top: 20px;
+
+      }
+
+      .friend {
+        width: 98%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="sectionContainer1">
+    <aside class="leftSideContainer">
+      <div class="d-flex flex-column gap-1">
+        <div class="iconContainer items">
+          <h2>Friends</h2>
+          <i class="fa-solid fa-gear icon"></i>
+        </div>
+
+        <div class="paddContainer items">
+          <i class="fa-solid fa-user-group icon"></i>
+          <p class="textMsg">Home</p>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-user-check icon"></i>
+            <p class="textMsg">Friend Requests</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-user-plus icon"></i>
+            <p class="textMsg">Suggestions</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-people-group icon"></i>
+            <p class="textMsg">All Friends</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="paddContainer items">
+          <i class="fa-solid fa-gift icon"></i>
+          <p class="textMsg">Birthdays</p>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-people-group icon"></i>
+            <p class="textMsg">Custome Lists</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+    </aside>
+    <main class="centerContainer">
+      <div class="containerBlock">
+        <div id="friendsContainer" class="friendsContainer"></div>
+        <button class="seeMoreBtn" onclick="showRemainigCards()">See More</button>
+      </div>
+    </main>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"></script>
+
+  <script>
+
+    const friends = [
+      // Male Users
+      {
+        userProfile: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWVuJTIwcG9ydHJhaXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=80',
+        userName: 'Michael Johnson',
+        mutualFriendsCount: 3,
+        mutualFriends: [
+          {
+            name: 'David Wilson',
+            profileImage: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          },
+          {
+            name: 'James Brown',
+            profileImage: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            name: 'Robert Taylor',
+            profileImage: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        userName: 'Christopher Anderson',
+        mutualFriendsCount: 2,
+        mutualFriends: [
+          {
+            name: 'Daniel Martinez',
+            profileImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            name: 'Matthew Thomas',
+            profileImage: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://images.unsplash.com/photo-1530268729831-4b0b9e170218?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80',
+        userName: 'Joshua Hernandez',
+        mutualFriendsCount: 2,
+        mutualFriends: [
+          {
+            name: 'Ryan White',
+            profileImage: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          },
+          {
+            name: 'Nicholas Harris',
+            profileImage: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWVuJTIwcG9ydHJhaXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=80'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://randomuser.me/api/portraits/women/36.jpg',
+        userName: 'Zoey Wright',
+        mutualFriendsCount: 1,
+        mutualFriends: [
+          { name: 'Carter Scott', profileImage: 'https://randomuser.me/api/portraits/men/37.jpg' }
+        ]
+      },
+      {
+        userProfile: 'https://randomuser.me/api/portraits/men/38.jpg',
+        userName: 'Jack Torres',
+        mutualFriendsCount: 2,
+        mutualFriends: [
+          { name: 'Lily Nguyen', profileImage: 'https://randomuser.me/api/portraits/women/39.jpg' },
+          { name: 'Luke Hill', profileImage: 'https://randomuser.me/api/portraits/men/40.jpg' }
+        ]
+      },
+      {
+        userProfile: 'https://randomuser.me/api/portraits/women/41.jpg',
+        userName: 'Penelope Flores',
+        mutualFriendsCount: 1,
+        mutualFriends: [
+          { name: 'Riley Baker', profileImage: 'https://randomuser.me/api/portraits/women/45.jpg' }
+        ]
+      },
+      {
+        userProfile: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d29tZW4lMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        userName: 'Emily Wilson',
+        mutualFriendsCount: 3,
+        mutualFriends: [
+          {
+            name: 'Emma Johnson',
+            profileImage: 'https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          },
+          {
+            name: 'Olivia Brown',
+            profileImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            name: 'Ava Davis',
+            profileImage: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        userName: 'Sophia Martinez',
+        mutualFriendsCount: 2,
+        mutualFriends: [
+          {
+            name: 'Isabella Anderson',
+            profileImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8d29tZW4lMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            name: 'Mia Thomas',
+            profileImage: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHdvbWVuJTIwcG9ydHJhaXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=80',
+        userName: 'Charlotte Taylor',
+        mutualFriendsCount: 3,
+        mutualFriends: [
+          {
+            name: 'Amelia Hernandez',
+            profileImage: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          },
+          {
+            name: 'Harper Moore',
+            profileImage: 'https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            name: 'Abigail White',
+            profileImage: 'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8d29tZW4lMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=80'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        userName: 'William Thompson',
+        mutualFriendsCount: 1,
+        mutualFriends: [
+          {
+            name: 'Benjamin Garcia',
+            profileImage: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWVuJTIwcG9ydHJhaXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=80'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWVuJTIwcG9ydHJhaXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=80',
+        userName: 'Michael Johnson',
+        mutualFriendsCount: 3,
+        mutualFriends: [
+          {
+            name: 'David Wilson',
+            profileImage: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          },
+          {
+            name: 'James Brown',
+            profileImage: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            name: 'Robert Taylor',
+            profileImage: 'https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80',
+        userName: 'Christopher Lee',
+        mutualFriendsCount: 2,
+        mutualFriends: [
+          {
+            name: 'Daniel Smith',
+            profileImage: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          },
+          {
+            name: 'Matthew Davis',
+            profileImage: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        userName: 'Andrew Wilson',
+        mutualFriendsCount: 3,
+        mutualFriends: [
+          {
+            name: 'Kevin Martinez',
+            profileImage: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            name: 'Ryan Garcia',
+            profileImage: 'https://images.pexels.com/photos/3778603/pexels-photo-3778603.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          },
+          {
+            name: 'Jason Miller',
+            profileImage: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80',
+        userName: 'Edward Thompson',
+        mutualFriendsCount: 1,
+        mutualFriends: [
+          {
+            name: 'Thomas White',
+            profileImage: 'https://images.pexels.com/photos/3777946/pexels-photo-3777946.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://images.pexels.com/photos/3778602/pexels-photo-3778602.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+        userName: 'William Harris',
+        mutualFriendsCount: 3,
+        mutualFriends: [
+          {
+            name: 'Joseph Clark',
+            profileImage: 'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            name: 'Richard Lewis',
+            profileImage: 'https://images.pexels.com/photos/3777941/pexels-photo-3777941.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          },
+          {
+            name: 'Charles Walker',
+            profileImage: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjZ8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://randomuser.me/api/portraits/women/41.jpg',
+        userName: 'Penelope Flores',
+        mutualFriendsCount: 1,
+        mutualFriends: [
+          { name: 'Riley Baker', profileImage: 'https://randomuser.me/api/portraits/women/45.jpg' }
+        ]
+      },
+      {
+        userProfile: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d29tZW4lMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        userName: 'Emily Wilson',
+        mutualFriendsCount: 3,
+        mutualFriends: [
+          {
+            name: 'Emma Johnson',
+            profileImage: 'https://images.pexels.com/photos/712513/pexels-photo-712513.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          },
+          {
+            name: 'Olivia Brown',
+            profileImage: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8d29tZW4lMjBwb3J0cmFpdHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=80'
+          },
+          {
+            name: 'Ava Davis',
+            profileImage: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://images.unsplash.com/photo-1530268729831-4b0b9e170218?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fG1lbiUyMHBvcnRyYWl0fGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=80',
+        userName: 'Joshua Hernandez',
+        mutualFriendsCount: 2,
+        mutualFriends: [
+          {
+            name: 'Ryan White',
+            profileImage: 'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+          },
+          {
+            name: 'Nicholas Harris',
+            profileImage: 'https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWVuJTIwcG9ydHJhaXR8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=800&q=80'
+          }
+        ]
+      },
+      {
+        userProfile: 'https://randomuser.me/api/portraits/women/36.jpg',
+        userName: 'Zoey Wright',
+        mutualFriendsCount: 1,
+        mutualFriends: [
+          { name: 'Carter Scott', profileImage: 'https://randomuser.me/api/portraits/men/37.jpg' }
+        ]
+      },
+    ];
+
+    function runFriendsCards(users) {
+      document.getElementById("friendsContainer").innerHTML = "";
+      users.map((friend) => {
+        document.getElementById("friendsContainer").innerHTML += `
+        <div class="friend">
+          <img class='userProfile' src="${friend.userProfile}" alt="friendImage">
+          <div>
+            <p class='fw-bold'>${friend.userName}</p>
+            <div class='mutualFriends'>
+            ${getImagesArr(friend.mutualFriends)}
+            </div>
+            <div class="d-flex gap-2 flex-column m-1">
+              <button class='border-0 rounded-2 px-2 py-2 text-bg-primary'>Confirm</button>
+              <button class='border-0 rounded-2 px-2 py-2 text-bg-danger'>Delete</button>
+            </div>
+          </div>
+        </div>
+      `
+      })
+    }
+
+    let array = friends.slice(0, 10);
+    runFriendsCards(array);
+
+    let statusBtn = true;
+    function showRemainigCards() {
+      if (statusBtn) {
+        document.getElementById("friendsContainer").innerHTML = "";
+        document.querySelector(".seeMoreBtn").innerText = "See Less";
+        runFriendsCards(friends);
+        statusBtn = false;
+      } else {
+        document.querySelector(".seeMoreBtn").innerText = "See More";
+        runFriendsCards(array);
+        statusBtn = true
+      }
+    }
+    function getImagesArr(arr) {
+      let dtts = "";
+      arr.forEach((ele) => {
+        dtts += `<img class='rounded-circle' src='${ele.profileImage}' width='30px' height='30px'>`
+      })
+      return dtts + ' mutual friends';
+    }
+
+
+  </script>
+</body>
+
+</html>

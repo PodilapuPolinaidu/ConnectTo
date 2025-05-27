@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game</title>
+  <style>
+    body {
+      color: white;
+      background-color: #0353a4;
+    }
+
+    .sectionContainer1 {
+      width: 100%;
+      height: max-content;
+      background-color: #0353a4;
+    }
+
+    .leftSideContainer {
+      width: 23%;
+      display: flex;
+      flex-direction: column;
+      background-color: #061a40;
+    }
+
+    .centerContainer {
+      width: 75%;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 0;
+      top: 30px;
+    }
+
+    .icon {
+      font-size: 1.3em;
+    }
+
+    .textMsg {
+      margin-top: 4px;
+      font-size: 1.3em;
+      align-self: start;
+    }
+
+    .iconContainer {
+      display: flex;
+      /* padding: 3px; */
+      padding-right: 3px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .items {
+      opacity: 0;
+      transform: scale(0.8);
+      animation: scaleFadeIn 0.5s ease-out forwards, liftGlow 0.6s ease-in-out forwards;
+    }
+
+    .items:nth-child(1) {
+      animation-delay: 0.5s, 1.1s;
+    }
+
+    .items:nth-child(2) {
+      animation-delay: 0.6s, 1.2s;
+    }
+
+    .items:nth-child(3) {
+      animation-delay: 0.7s, 1.3s;
+    }
+
+    .items:nth-child(4) {
+      animation-delay: 0.8s, 1.4s;
+    }
+
+    .items:nth-child(5) {
+      animation-delay: 0.9s, 1.5s;
+    }
+
+    .items:nth-child(6) {
+      animation-delay: 1s, 1.6s;
+    }
+
+    .items:nth-child(7) {
+      animation-delay: 1s, 1.6s;
+    }
+
+    @keyframes scaleFadeIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes liftGlow {
+      0% {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+
+      50% {
+        transform: translateY(-5px);
+        box-shadow: 0 0 10px rgba(0, 150, 255, 0.3);
+      }
+
+      100% {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+    }
+
+
+    .iconContainer:hover {
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .paddContainer {
+      display: flex;
+      gap: 10px;
+      padding-right: 2px;
+    }
+
+    .friendsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .product {
+      width: 23%;
+      height: 300px;
+      display: flex;
+      background-color: #b8bdb5;
+      color: black;
+      padding: 5px;
+      flex-direction: column;
+      border-radius: 10px;
+      opacity: 0;
+      transform: scale(0.8) rotateZ(-5deg);
+      animation: flipInY 1s ease-out forwards;
+      animation-delay: calc(var(--i) * 80ms);
+      transform-origin: center;
+    }
+
+    .productImg {
+      width: 100%;
+      height: 60%;
+      border-radius: 10px;
+    }
+
+    @keyframes flipInY {
+      0% {
+        transform: perspective(600px) rotateY(90deg);
+        opacity: 0;
+      }
+
+      100% {
+        transform: perspective(600px) rotateY(0deg);
+        opacity: 1;
+      }
+    }
+
+
+    .mutualFriends {
+      margin-top: -8px;
+    }
+
+    .userProfile {
+      width: 100%;
+      height: 200px;
+      border-radius: 13px 13px 0px 0px;
+    }
+
+    .centerContainer {
+      width: 75%;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 10px;
+      top: 30px;
+    }
+
+    /* .seeMoreBtn {
+      width: 100px;
+      border: none;
+      border-radius: 10px;
+      color: black;
+      background-color: chartreuse;
+      justify-self: center;
+      align-self: center;
+      font-weight: bold;
+    } */
+
+    @media screen and (max-width:1024px) {
+      .leftSideContainer {
+        width: 30%;
+      }
+
+      .centerContainer {
+        width: 68%;
+        right: 0;
+      }
+
+      .product {
+        width: 32%;
+      }
+    }
+
+    @media screen and (max-width:730px) {
+      .leftSideContainer {
+        width: 40%;
+      }
+
+      .centerContainer {
+        width: 60%;
+        right: -20px;
+        top: 20px;
+      }
+
+      .product {
+        width: 48%;
+      }
+    }
+
+    @media screen and (max-width:420px) {
+      .leftSideContainer {
+        width: 40%;
+      }
+
+      .centerContainer {
+        width: 60%;
+        right: -220px;
+        top: 20px;
+      }
+
+      .product {
+        width: 98%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="sectionContainer1">
+    <aside class="leftSideContainer">
+      <div class="d-flex flex-column gap-1">
+        <div class="iconContainer items">
+          <h2>Gaming</h2>
+          <i class="fa-solid fa-gear icon"></i>
+        </div>
+
+        <div class="paddContainer items">
+          <i class="fa-solid fa-user-group icon"></i>
+          <p class="textMsg">Home</p>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-user-check icon"></i>
+            <p class="textMsg">Friend Requests</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-user-plus icon"></i>
+            <p class="textMsg">Suggestions</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-people-group icon"></i>
+            <p class="textMsg">All Friends</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="paddContainer items">
+          <i class="fa-solid fa-gift icon"></i>
+          <p class="textMsg">Birthdays</p>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-people-group icon"></i>
+            <p class="textMsg">Custome Lists</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+    </aside>
+    <main class="centerContainer">
+
+      <div class="containerBlock">
+        <div id="friendsContainer" class="friendsContainer"></div>
+      </div>
+
+      </div>
+    </main>
+  </section>
+
+
+  <script>
+    const games = [
+      {
+        gameImage: "https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHViZyUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1600&q=80",
+        gameName: "BattleGrounds Mobile",
+        playersPlayed: 85000
+      },
+      {
+        gameImage: "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bHVkbyUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1600&q=80",
+        gameName: "Ludo King Deluxe",
+        playersPlayed: 50000
+      },
+      {
+        gameImage: "https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dGVtcGxlJTIwcnVuJTIwZ2FtZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=1600&q=80",
+        gameName: "Jungle Adventure Run",
+        playersPlayed: 75000
+      },
+      {
+        gameImage: "https://images.unsplash.com/photo-1551103782-8ab07afd45c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2FsbCUyMG9mJTIwZHV0eSUyMGdhbWV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1600&q=80",
+        gameName: "Modern Combat 5",
+        playersPlayed: 68000
+      },
+      {
+        gameImage: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2xhc2glMjBvZiUyMGNsYW5zfGVufDB8fDB8fHww&auto=format&fit=crop&w=1600&q=80",
+        gameName: "Clash of Warriors",
+        playersPlayed: 150000
+      },
+      {
+        gameImage: "https://images.unsplash.com/photo-1587840171670-8b850147754e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c3Vic2F8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=1600&q=80",
+        gameName: "Submarine Battle",
+        playersPlayed: 42000
+      },
+      {
+        gameImage: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2FuZHklMjBjcmlzaHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=1600&q=80",
+        gameName: "Candy Smash Saga",
+        playersPlayed: 95000
+      },
+      {
+        gameImage: "https://images.unsplash.com/photo-1607853202273-797f1c22a38e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8OCUyMGJhbGwlMjBwb29sfGVufDB8fDB8fHww&auto=format&fit=crop&w=1600&q=80",
+        gameName: "8 Ball Pool Pro",
+        playersPlayed: 110000
+      },
+      {
+        gameImage: "https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2FyJTIwcmFjaW5nJTIwZ2FtZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=1600&q=80",
+        gameName: "Asphalt Xtreme",
+        playersPlayed: 78000 // 78 million
+      },
+      {
+        gameImage: "https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bWluZWNyYWZ0JTIwZ2FtZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=1600&q=80",
+        gameName: "MineCraft Mobile",
+        playersPlayed: 180000 // 180 million
+      }
+    ];
+    function renderGame(data) {
+      let container = document.getElementById("friendsContainer");
+      games.map((product) => {
+        container.innerHTML += `
+         <div class="product">
+          <img class="productImg" src="${product.gameImage}" alt="product">
+          <div>
+            <span class="fw-bold">${product.gameName}</span>
+            <p>${product.playersPlayed}</p>
+          </div>
+        </div>
+        `
+      })
+    }
+
+    renderGame(games)
+  </script>
+</body>
+
+</html>

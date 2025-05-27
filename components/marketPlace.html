@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketplace</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <style>
+    .leftSideContainer {
+      width: 23%;
+      display: flex;
+      flex-direction: column;
+      /* background-color: #708d81; */
+    }
+
+    .centerContainer {
+      width: 75%;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 10px;
+      top: 30px;
+    }
+
+    .icon {
+      font-size: 1.3em;
+    }
+
+    .textMsg {
+      margin-top: 4px;
+      font-size: 1.3em;
+      align-self: start;
+    }
+
+    .iconContainer {
+      display: flex;
+      padding-right: 3px;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .items {
+      opacity: 0;
+      transform: perspective(600px) rotateY(90deg) translateY(20px);
+      animation: flip 0.7s ease-out forwards;
+    }
+
+    .items:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    .items:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .items:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    .items:nth-child(4) {
+      animation-delay: 0.5s;
+    }
+
+    .items:nth-child(5) {
+      animation-delay: 0.6s;
+    }
+
+    .items:nth-child(6) {
+      animation-delay: 0.7s;
+    }
+
+    .items:nth-child(7) {
+      animation-delay: 0.8s;
+    }
+
+    @keyframes flip {
+      0% {
+        opacity: 0;
+        transform: rotateY(90deg) translateY(20px);
+      }
+
+      60% {
+        opacity: 0.7;
+        transform: rotateY(-10deg) translateY(-5px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: rotateY(0deg) translateY(0);
+      }
+    }
+
+    .iconContainer:hover {
+      cursor: pointer;
+      border-radius: 10px;
+    }
+
+    .paddContainer {
+      display: flex;
+      gap: 10px;
+      padding-right: 2px;
+    }
+
+    .friendsContainer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .product {
+      width: 23%;
+      height: 300px;
+      display: flex;
+      background-color: #b8bdb5;
+      color: black;
+      padding: 5px;
+      flex-direction: column;
+      border-radius: 10px;
+      opacity: 0;
+      transform: scale(0.8) rotateZ(-5deg);
+      animation: slideUpFadeIn 1s ease-out forwards;
+      animation-delay: calc(var(--i) * 80ms);
+      transform-origin: center;
+    }
+
+    .productImg {
+      width: 100%;
+      height: 50%;
+      border-radius: 10px;
+    }
+
+    .centerContainer {
+      width: 75%;
+      display: flex;
+      align-items: center;
+      position: absolute;
+      right: 10px;
+      top: 30px;
+    }
+
+    .seeMoreContainer {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      color: black;
+      align-items: center;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 100%
+    }
+
+    .seeMoreContainer button {
+      border: none;
+      background-color: #b8bdb5;
+      border-radius: 5px;
+      padding: 10px;
+    }
+
+    @keyframes slideUpFadeIn {
+      0% {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .mutualFriends {
+      margin-top: -8px;
+    }
+
+    .userProfile {
+      width: 100%;
+
+      height: 200px;
+      border-radius: 13px 13px 0px 0px;
+    }
+
+    @media screen and (max-width:1024px) {
+      .leftSideContainer {
+        width: 30%;
+      }
+
+      .centerContainer {
+        width: 68%;
+      }
+
+      .product {
+        width: 32%;
+      }
+    }
+
+    @media screen and (max-width:730px) {
+      .leftSideContainer {
+        width: 40%;
+      }
+
+      .centerContainer {
+        width: 60%;
+        right: -20px;
+        top: 20px;
+      }
+
+      .product {
+        width: 48%;
+      }
+    }
+
+    @media screen and (max-width:420px) {
+      .leftSideContainer {
+        width: 40%;
+      }
+
+      .centerContainer {
+        width: 60%;
+        right: -220px;
+        top: 20px;
+      }
+
+      .product {
+        width: 98%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="sectionContainer1">
+    <aside class="leftSideContainer">
+      <div class="d-flex flex-column gap-1">
+        <div class="iconContainer items">
+          <h2>Marketlace</h2>
+          <i class="fa-solid fa-gear icon"></i>
+        </div>
+
+        <div class="paddContainer items">
+          <i class="fa-solid fa-user-group icon"></i>
+          <p class="textMsg">Browse all</p>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-bell icon"></i>
+            <p class="textMsg">Notifications</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-user-plus icon"></i>
+            <p class="textMsg">Marketplace access</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-people-group icon"></i>
+            <p class="textMsg">Buying</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <div class="paddContainer items">
+          <i class="fa-solid fa-gift icon"></i>
+          <p class="textMsg">Selling</p>
+        </div>
+
+        <div class="iconContainer items">
+          <div class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-inbox icon"></i>
+            <p class="textMsg">Inbox</p>
+          </div>
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </div>
+    </aside>
+    <main class="centerContainer">
+
+      <div class="containerBlock">
+        <div id="friendsContainer" class="friendsContainer"></div>
+        <div class="seeMoreContainer">
+          <button id="previousClick">Previous</button>
+          <span id="text">1 of 4</span>
+          <button id="nextClick">Next</button>
+        </div>
+      </div>
+
+      </div>
+    </main>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"></script>
+
+  <script>
+    const products = [
+
+      {
+        image: "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg",
+        description: "Stylish Women's Handbag",
+        price: "₹8999",
+        location: "Paris, France"
+      },
+      {
+        image: "https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg",
+        description: "Wireless Mouse with Ergonomic Design",
+        price: "₹7990",
+        location: "Chennai, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/18105/pexels-photo.jpg",
+        description: "Smartwatch with GPS and Fitness Tracking",
+        price: "₹4999",
+        location: "Pune, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/276514/pexels-photo-276514.jpeg",
+        description: "Laptop with Intel i5 Processor and SSD Storage",
+        price: "₹45999",
+        location: "Ahmedabad, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg",
+        description: "Wireless Earbuds with Touch Controls",
+        price: "₹3499",
+        location: "Kolkata, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/267394/pexels-photo-267394.jpeg",
+        description: "Digital Camera with 24MP Sensor and 4K Video",
+        price: "₹25999",
+        location: "Jaipur, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg",
+        description: "Tablet with 10-inch Display and 64GB Storage",
+        price: "₹14999",
+        location: "Lucknow, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/18105/pexels-photo.jpg",
+        description: "Gaming Console with 1TB Storage and VR Support",
+        price: "₹39999",
+        location: "Nagpur, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/276514/pexels-photo-276514.jpeg",
+        description: "Smart Home Assistant with Voice Control",
+        price: "₹5999",
+        location: "Indore, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg",
+        description: "Action Camera with Waterproof Housing",
+        price: "₹8999",
+        location: "Bhopal, India"
+      },
+
+      {
+        image: "https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg",
+        description: "Wireless Keyboard with Backlit Keys",
+        price: "₹1999",
+        location: "Vadodara, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg",
+        description: "Stylish Women's Handbag",
+        price: "₹8999",
+        location: "Paris, France"
+      },
+      {
+        image: "https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg",
+        description: "Wireless Mouse with Ergonomic Design",
+        price: "₹7990",
+        location: "Chennai, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/18105/pexels-photo.jpg",
+        description: "Smartwatch with GPS and Fitness Tracking",
+        price: "₹4999",
+        location: "Pune, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/276514/pexels-photo-276514.jpeg",
+        description: "Laptop with Intel i5 Processor and SSD Storage",
+        price: "₹45999",
+        location: "Ahmedabad, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg",
+        description: "Wireless Earbuds with Touch Controls",
+        price: "₹3499",
+        location: "Kolkata, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/18105/pexels-photo.jpg",
+        description: "Smart LED TV with 4K Resolution and HDR",
+        price: "₹34999",
+        location: "Ludhiana, India"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8",
+        price: "₹1999",
+        description: "Wireless Bluetooth Headphones with Noise Cancellation",
+        location: "New York, USA"
+      },
+      {
+        image: "https://tse1.mm.bing.net/th?id=OIP.yXbHDrsDnWGdUQbtIvB-zgHaKq&pid=Api&P=0&h=180",
+        description: "Tablet with 10-inch Display and 64GB Storage",
+        price: "₹14999",
+        location: "Lucknow, India",
+      },
+
+      {
+        image: "https://media.licdn.com/dms/image/v2/D5612AQF8ZGtghok6Hw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1702641200338?e=2147483647&t=nauyGmUuCvhzF4MPOVAkMBW7YvdeVB_ljovaR37RSb0&v=beta",
+        description: "Flagship smartphone featuring a 108MP camera, 120Hz AMOLED display, and 5G connectivity",
+        price: "₹15000",
+        location: "Hyderabad"
+      },
+
+      {
+        image: "https://hips.hearstapps.com/hmg-prod/images/gh-office-gadgets-66042b2e9168c.png?crop=0.6666666666666666xw%3A1xh%3Bcenter%2Ctop&resize=1200%3A%2A",
+        description: " Industry-leading noise-canceling wireless headphones with up to 30 hours of battery life",
+        price: "₹5652"
+      },
+
+      {
+        image: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f",
+        price: "₹8999",
+        description: "Stainless Steel Water Bottle - 1L",
+        location: "San Francisco, USA"
+      },
+      {
+        image: "https://images.pexels.com/photos/18105/pexels-photo.jpg",
+        description: "Smartwatch with GPS and Fitness Tracking",
+        price: "₹4999",
+        location: "Pune, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/276514/pexels-photo-276514.jpeg",
+        description: "Laptop with Intel i5 Processor and SSD Storage",
+        price: "₹45999",
+        location: "Ahmedabad, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/1334597/pexels-photo-1334597.jpeg",
+        description: "Wireless Earbuds with Touch Controls",
+        price: "₹3499",
+        location: "Kolkata, India"
+      },
+      {
+        image: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b",
+        price: "₹2990",
+        description: "Smart Watch with Heart Rate Monitor",
+        location: "Austin, USA"
+      },
+      {
+        image: "https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg",
+        description: "Smart Doorbell with HD Camera and App Control",
+        price: "₹7999",
+        location: "Amritsar, India"
+      },
+      {
+        image: "https://images.pexels.com/photos/325153/pexels-photo-325153.jpeg",
+        description: "Wireless Mouse with Ergonomic Design",
+        price: "₹7990",
+        location: "Chennai, India"
+      },
+    ];
+
+
+    function renderProducts(data) {
+      document.getElementById("friendsContainer").innerHTML = ``;
+      data.map((product) => {
+        document.getElementById("friendsContainer").innerHTML += `
+         <div class="product">
+          <img class="productImg" src="${product.image}" alt="product">
+          <div>
+            <span class="fw-bold">${product.price}</span>
+            <p>${product.description}</p>
+            <p>${product.location}</p>
+          </div>
+        </div>
+        `
+      })
+    }
+
+    let newArray = products.slice(0, 8);
+    renderProducts(newArray);
+    let page = 1;
+    let count = 8;
+    document.getElementById("nextClick").addEventListener("click", () => {
+      if (count < products.length) {
+        let newData = products.slice(count, count + 8);
+        document.getElementById("friendsContainer").innerHTML = "";
+        renderProducts(newData);
+        count += 8;
+        page += 1;
+        document.getElementById("text").innerText = `${page} of 4`
+      }
+      checkPrevNext();
+    });
+
+    let previousBtn = document.getElementById("previousClick");
+    previousBtn.addEventListener("click", () => {
+      newData = products.slice(count - 16, count - 8);
+      document.getElementById("friendsContainer").innerHTML = "";
+      renderProducts(newData);
+      count -= 8;
+      page -= 1;
+      document.getElementById("text").innerText = `${page} of 4`
+      checkPrevNext();
+    });
+
+    function checkPrevNext() {
+      if (count == 8) {
+        previousBtn.disabled = true;
+        document.getElementById("nextClick").disabled = false;
+      } else if (count == products.length) {
+        previousBtn.disabled = false;
+        document.getElementById("nextClick").disabled = true;
+      } else {
+        previousBtn.disabled = false;
+        document.getElementById("nextClick").disabled = false;
+      }
+    }
+
+    checkPrevNext();
+  </script>
+</body>
+
+</html>

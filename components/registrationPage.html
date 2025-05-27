@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <style>
+    body {
+      background: linear-gradient(135deg,#ede800, #aed9e0, #7500f7);
+      /* background-size: 800% 800%;
+      animation: gradientFlow 13s ease infinite; */
+      color: black;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* @keyframes gradientFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    } */
+
+    .form {
+      width: 40%;
+      padding: 20px;
+      height: max-content;
+      border-radius: 5px;
+      background: linear-gradient(135deg, #c39ad1,#8f2a60, #001845);
+    }
+
+    .dateSection {
+      display: flex;
+      gap: 10px;
+      margin-top: -13px;
+    }
+
+    .date {
+      width: 33%;
+      padding: 6px 10px;
+      border-radius: 5px;
+    }
+
+    .date:focus {
+      outline: 2px solid black;
+    }
+
+    .name {
+      width: 50%;
+      padding: 8px 15px;
+      border: 1px solid gray;
+      border-radius: 5px;
+    }
+
+    .gender {
+      display: flex;
+      margin-top: -10px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .radioBtn {
+      border: 1px solid black;
+      width: 33%;
+      border-radius: 5px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .userEmail {
+      margin-top: 10px;
+    }
+
+    .userEmail,
+    .userPassword {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 5px;
+      border: 1px solid gray;
+    }
+
+    #eyeContainer {
+      position: relative;
+    }
+
+    .eyeIcon {
+      position: absolute;
+      top: -30px;
+      right: 8px;
+      cursor: pointer;
+    }
+
+    .btn {
+      background-color: green;
+      color: white;
+      font-weight: bold;
+      width: 100px;
+      align-self: center;
+      padding: 8px 15px;
+    }
+
+    .loginPage {
+      text-decoration: none;
+      align-self: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container d-flex align-items-center flex-column mt-3">
+    <h1 class="text-">ConnectTo</h1>
+    <form class="form">
+      <div class="border-bottom d-flex flex-column align-items-center">
+        <h2>Create a new account</h2>
+        <p>It's quick easy</p>
+      </div>
+      <div id="profile">
+        <p>Import your profile</p>
+        <input id="profile" type="file" />
+      </div>
+      <div class="mt-3">
+        <div id="inputContainer" class="d-flex justify-content-center gap-2">
+          <input type="text" id="firstName" class="name" placeholder="First name">
+          <input type="text" id="surName" class="name" placeholder="Surname">
+        </div>
+        <div id="errorMessage" class="d-flex gap-5"></div>
+        <div class="w-100 mt-2">
+          <p>Date of birth <i class="fa-solid fa-question"></i></p>
+          <div class="dateSection">
+            <select class="date" id="date"></select>
+            <select class="date" id="month"></select>
+            <select class="date" id="year"></select>
+          </div>
+          <div id="validateAge"></div>
+        </div>
+      </div>
+      <div class="mt-2">
+        <p>Gender <i class="fa-solid fa-question"></i></p>
+        <div class="gender">
+          <label class="radioBtn">Female<input id="Female" value="Female" type="radio" name="gender"></label>
+          <label class="radioBtn">Male<input id="Male" value="Male" type="radio" name="gender"></label>
+          <label class="radioBtn">Custome<input id="Custome" value="Custome" type="radio" name="gender"></label>
+        </div>
+      </div>
+      <div class="w-100 mt-2 d-flex flex-column gap-3">
+        <div>
+          <input id="email" class="userEmail" type="text" placeholder="Mobile number or email address">
+          <div id="emailError"></div>
+        </div>
+        <div class="passwordContainer">
+          <input id="password" class="userPassword" type="password" placeholder="New password">
+          <div id="eyeContainer" onclick="changeIcon()">
+            <i id="eyeIcon" class="fa-solid fa-eye-slash eyeIcon"></i>
+          </div>
+          <div id="passwordError"></div>
+        </div>
+        <button id="btn" class="btn">Sign Up</button>
+        <a class="loginPage" href="./login.html">Already have an account</a>
+      </div>
+
+  </div>
+  </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
+    crossorigin="anonymous"></script>
+
+  <script>
+    let dates = { Jan: 31, Feb: 28, Mar: 31, Apr: 30, May: 31, Jun: 30, Jul: 31, Aug: 31, Sep: 30, Oct: 31, Nov: 30, Dec: 31 };
+    let date = new Date();
+    let months = document.getElementById("month");
+    let year = document.getElementById("year");
+    let day = document.getElementById("date");
+
+    function getCurrentDate() {
+      Object.keys(dates).forEach(month => {
+        months.innerHTML += `<option value="${month}">${month}</option>`;
+      });
+      months.value = Object.keys(dates)[date.getMonth()];
+      setDays();
+      for (let i = date.getFullYear(); i >= 1905; i--) {
+        year.innerHTML += `<option value="${i}">${i}</option>`;
+      }
+      day.value = date.getDate();
+    }
+
+    function setDays() {
+      const selectedMonth = months.value;
+      day.innerHTML = "";
+      for (let i = 1; i <= dates[selectedMonth]; i++) {
+        day.innerHTML += `<option value="${i}">${i}</option>`;
+      }
+    }
+
+    let base64Data;
+    let fileInput = document.getElementById("profile");
+    fileInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+      let fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        base64Data = fileReader.result;
+      };
+
+      fileReader.onerror = (error) => {
+        console.error('Error reading file:', error);
+      };
+    })
+    months.addEventListener("change", setDays);
+    getCurrentDate();
+
+    document.getElementById("btn").addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log(base64Data)
+      const fname = document.getElementById("firstName");
+      const sname = document.getElementById("surName");
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const year = parseInt(document.getElementById("year").value);
+      const currentYear = new Date().getFullYear();
+
+      let isValid = true;
+
+      document.getElementById("errorMessage").innerHTML = "";
+      document.getElementById("emailError").innerHTML = "";
+      document.getElementById("passwordError").innerHTML = "";
+      document.getElementById("validateAge").innerHTML = "";
+
+      let userNamePattern = /^[a-zA-Z]+$/;
+      if (!userNamePattern.test(fname.value.trim())) {
+        validateErrors(fname, "Enter valid first name", "errorMessage");
+        isValid = false;
+      } else {
+        fname.style.border = "1px solid gray";
+      }
+
+      if (!userNamePattern.test(sname.value.trim())) {
+        validateErrors(sname, "Enter valid surname", "errorMessage");
+        isValid = false;
+      } else {
+        sname.style.border = "1px solid gray";
+      }
+
+      if (currentYear - year <= 18) {
+        document.getElementById("validateAge").innerHTML = `<span style="color:red; font-size:14px">Enter valid age</span>`;
+        isValid = false;
+      }
+
+      const emailPattern = /^[a-z0-9]+@[a-z]+\.[a-z]{2,}$/;
+      const phonePattern = /^[6-9][0-9]{9}$/;
+      if (!emailPattern.test(email.value.trim()) && !phonePattern.test(email.value.trim())) {
+        validateErrors(email, "Enter valid email or phone number", "emailError");
+        isValid = false;
+      } else {
+        email.style.border = "1px solid gray";
+      };
+
+      const passwordPattern = /^[A-Z][a-z]+@[0-9]+$/;
+      if (!passwordPattern.test(password.value.trim())) {
+        validateErrors(password, "Enter valid password (Eg: Abc@123)", "passwordError");
+        isValid = false;
+      } else {
+        password.style.border = "1px solid gray"
+      };
+
+      if (!gender) {
+        alert("Please select gender");
+        isValid = false;
+      }
+
+      if (isValid) {
+        const existingData = JSON.parse(localStorage.getItem("userDetails")) || [];
+        let emailExists = existingData.some((user) => user.email == email.value);
+        if (emailExists) {
+          document.getElementById("emailError").innerHTML = `<span style="color:red; font-size:13px">This email already exists. Please enter a different email.</span>`;
+          email.style.border = "2px solid red";
+          return;
+        }
+
+
+        // console.log(base64Data)
+        // let profile = document.getElementById("profile").files;
+        // console.log(document.getElementById("profile").files)
+        let count = existingData.length;
+        const userData = {
+          id: count + 1,
+          profileImg: `${base64Data}`,
+          firstName: fname.value,
+          surName: sname.value,
+          email: email.value,
+          password: password.value,
+          gender: gender.value,
+          dob: `${day.value}-${months.value}-${year}`,
+        };
+        // console.log(userData.profileImg)
+        existingData.push(userData);
+        localStorage.setItem("userDetails", JSON.stringify(existingData));
+        alert("User registered successfully!")
+        document.querySelector("form").reset();
+
+        setTimeout(() => {
+          window.location.href = "./login.html";
+        }, 2000);
+      }
+    });
+
+    function validateErrors(input, message, containerId) {
+      input.style.border = "2px solid red";
+      const container = document.getElementById(containerId);
+      const span = document.createElement("span");
+      span.style.color = "red";
+      span.style.fontSize = "13px";
+      span.innerText = message;
+      container.appendChild(span);
+    }
+
+
+    let status = true;
+    function changeIcon() {
+      if (status) {
+        password.setAttribute("type", "text");
+        document.getElementById("eyeContainer").innerHTML = ` <i id="eyeIcon" class="fa-solid fa-eye eyeIcon"></i>`;
+        status = false;
+      } else {
+        password.setAttribute("type", "password");
+        document.getElementById("eyeContainer").innerHTML = ` <i id="eyeIcon" class="fa-solid fa-eye-slash eyeIcon"></i>`;
+        status = true;
+      }
+    }
+
+
+  </script>
+</body>
+
+</html>

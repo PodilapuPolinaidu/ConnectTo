@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Login</title>
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  .container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    background-color: #778da9;
+    align-items: center;
+  }
+
+  .textContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 50%;
+  }
+
+  .textContainer img {
+    margin-left: -30px;
+  }
+
+  .textContainer p {
+    font-size: 1.5em;
+  }
+
+  .formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(200deg, #d90429, #90e0ef);
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-left: 50px;
+  }
+
+  .textArea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  input {
+    width: 350px;
+    padding: 15px 20px;
+    border: none;
+    font-size: 1em;
+    border-radius: 5px;
+
+  }
+
+  button {
+    border: none;
+    border-radius: 5px;
+    width: 350px;
+    padding: 8px 12px;
+    color: white;
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  input:focus {
+    outline: 1px solid blue;
+  }
+
+  .emailError,
+  .passwordError {
+    align-self: start;
+  }
+
+  #eyeContainer {
+    position: relative;
+  }
+
+  .eyeIcon {
+    position: absolute;
+    top: -40px;
+    right: -160px;
+    cursor: pointer;
+  }
+
+  .loginBtn {
+    background-color: #03045e;
+    cursor: pointer;
+  }
+
+  .btnContainer {
+    align-self: center;
+  }
+
+  .createBtn {
+    background-color: rgb(34, 204, 34);
+    width: max-content;
+    cursor: pointer;
+  }
+
+  .borderLine {
+    border-bottom: 1px solid gray;
+    width: 350px;
+  }
+
+  .forgotText {
+    color: blue;
+    cursor: pointer;
+  }
+
+  .logoTitle {
+    border: 8px solid #03045e;
+    border-radius: 5px;
+    background-color: #fff;
+    width: max-content;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <div class="textContainer">
+      <div>
+        <div class="logoTitle">
+          <h1>ConnectTo</h1>
+        </div>
+        <h3 style="color:white">ConnectTo helps you connect and share with the people in your life.</h3>
+      </div>
+    </div>
+
+    <div class="formContainer">
+      <form>
+        <div class="textArea">
+          <input type="text" id="email" placeholder="Email address or phone number">
+          <div class="emailError" id="emailErrorMessage"></div>
+          <input type="password" id="password" placeholder="Password">
+          <div id="eyeContainer" onclick="changeIcon()">
+            <i id="eyeIcon" class="fa-solid fa-eye-slash eyeIcon"></i>
+          </div>
+          <div class="passwordError" id="passwordErrorMessage"></div>
+          <button id="loginBtn" class="loginBtn">Log in</button>
+          <p onclick="gotoForgottenPage()" class="forgotText">Forgotten password?</p>
+          <div class="borderLine"></div>
+        </div>
+        <div class="btnContainer">
+          <button id="btn" class="createBtn">Create a new account</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    document.getElementById("loginBtn").addEventListener("click", (e) => {
+      e.preventDefault();
+      let isvalid = true;
+      let emailPattern = /^[a-z0-9]+@[a-z]+\.[a-z]{2,}$/;
+      let phnPattern = /^[6-9][0-9]+$/
+
+      if (!emailPattern.test(email.value) && !phnPattern.test(email.value)) {
+        document.getElementById("emailErrorMessage").innerHTML = `<span style='color:red; font-size:13px'>Enter a valid Email or Password</span>`;
+        email.style.border = "1ps solid red";
+        isvalid = false;
+      } else {
+        document.getElementById("emailErrorMessage").innerHTML = '';
+        email.style.border = "none"
+      }
+
+      let passwordPattern = /^[A-Z][a-z]+@[0-9]+$/
+
+      if (!passwordPattern.test(password.value)) {
+        document.getElementById("passwordErrorMessage").innerHTML = `<span style='color:red; font-size:13px'>Enter a valid Password</span>`
+        password.style.border = "1ps solid red";
+        isvalid = false;
+      } else {
+        document.getElementById("passwordErrorMessage").innerHTML = '';
+        password.style.border = "none";
+      }
+
+      if (isvalid) {
+        let userDetails = JSON.parse(localStorage.getItem("userDetails"))
+        let emailError = document.getElementById("emailErrorMessage");
+        let passwordError = document.getElementById("passwordErrorMessage");
+        let isvalidEmail = false;
+        let isValidPassword = false;
+        userDetails.forEach((user) => {
+          if (user.email == email.value) {
+            isvalidEmail = true;
+          }
+
+          if (user.password == password.value) {
+            isValidPassword = true;
+          }
+        })
+
+        if (isValidPassword && isvalidEmail) {
+          alert("Login successful");
+          let getdetails = JSON.parse(localStorage.getItem("userDetails"));
+          let newUser = getdetails.filter((person) => {
+            if (email.value == person.email && password.value == person.password) {
+              return person;
+            }
+          })
+          localStorage.setItem("loginDetails", JSON.stringify(newUser));
+          setTimeout(() => {
+            window.location.href = "../index.html";
+          }, 1000);
+
+
+        }
+
+        else if (!isValidPassword && !isvalidEmail) {
+          passwordError.innerHTML = `<span style='color:red'>You have entered wrong password. Please enter correct password</span>`
+          emailError.innerHTML = `<span style='color:red'>You have entered wrong email. Pleas enter correct email.</span>`;
+        }
+
+        else if (!isValidPassword) {
+          passwordError.innerHTML = `<span style='color:red'>You have entered wrong password. Please enter correct password</span>`
+        }
+
+        else if (!isvalidEmail) {
+          emailError.innerHTML = `<span style='color:red'>You have entered wrong email. Pleas enter correct email.</span>`
+        }
+
+        else {
+          emailError.innerHTML = "";
+          passwordError.innerHTML = "";
+        }
+      }
+    })
+
+    document.getElementById("btn").addEventListener("click", (e) => {
+      e.preventDefault();
+      window.location.href = "registrationPage.html";
+    })
+
+    let status = true;
+    function changeIcon() {
+      if (status) {
+        password.setAttribute("type", "text");
+        document.getElementById("eyeContainer").innerHTML = ` <i id="eyeIcon" class="fa-solid fa-eye eyeIcon"></i>`;
+        status = false;
+      } else {
+        password.setAttribute("type", "password");
+        document.getElementById("eyeContainer").innerHTML = ` <i id="eyeIcon" class="fa-solid fa-eye-slash eyeIcon"></i>`;
+        status = true;
+      }
+    }
+
+    function gotoForgottenPage() {
+      window.location.href = "./forgotPassword.html"
+    }
+  </script>
+</body>
+
+</html>
