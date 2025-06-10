@@ -63,7 +63,7 @@
   }
 
   input {
-    width: 350px;
+    width: 100%;
     padding: 15px 20px;
     border: none;
     font-size: 1em;
@@ -74,7 +74,7 @@
   button {
     border: none;
     border-radius: 5px;
-    width: 350px;
+    width: 100%;
     padding: 8px 12px;
     color: white;
     font-size: 1em;
@@ -133,6 +133,34 @@
     width: max-content;
     padding: 10px 15px;
     margin-bottom: 20px;
+  }
+
+  @media screen and (max-width:500px) {
+    .container {
+      flex-direction: column;
+      /* justify-content: center; */
+      align-items: center;
+      width: 100%;
+      padding: 20px;
+      gap: 10px;
+    }
+
+    .textContainer {
+      align-items: center;
+    }
+
+    .formContainer {
+      align-items: center;
+
+    }
+
+    form {
+      width: 280px;
+    }
+
+    .eyeIcon {
+      right: -100px;
+    }
   }
 </style>
 
@@ -268,6 +296,7 @@
       }
     }
   </script>
+  
 </body>
 
 </html>

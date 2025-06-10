@@ -10,7 +10,7 @@
     integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   <style>
     body {
-      background: linear-gradient(135deg,#ede800, #aed9e0, #7500f7);
+      background: linear-gradient(135deg, #ede800, #aed9e0, #7500f7);
       color: black;
       width: 100vw;
       height: 100vh;
@@ -21,7 +21,7 @@
       padding: 20px;
       height: max-content;
       border-radius: 5px;
-      background: linear-gradient(135deg, #c39ad1,#8f2a60, #001845);
+      background: linear-gradient(135deg, #c39ad1, #8f2a60, #001845);
     }
 
     .dateSection {
@@ -202,7 +202,6 @@
       };
 
       fileReader.onerror = (error) => {
-        console.error('Error reading file:', error);
       };
     })
     months.addEventListener("change", setDays);
@@ -210,7 +209,6 @@
 
     document.getElementById("btn").addEventListener("click", (e) => {
       e.preventDefault();
-      console.log(base64Data)
       const fname = document.getElementById("firstName");
       const sname = document.getElementById("surName");
       const email = document.getElementById("email");
@@ -294,8 +292,8 @@
         document.querySelector("form").reset();
 
         setTimeout(() => {
-          window.location.href = "../components/index.html";
-        }, 2000);
+          window.location.href = "../index.html";
+        }, 1000);
       }
     });
 
